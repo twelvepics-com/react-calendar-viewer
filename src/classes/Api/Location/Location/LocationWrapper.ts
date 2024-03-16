@@ -84,6 +84,16 @@ class LocationWrapper
     }
 
     /**
+     * Returns the full name of the location.
+     *
+     * @return {number}
+     */
+    getZipCode(): string
+    {
+        return this.location["zip-code"];
+    }
+
+    /**
      * Returns the updated at of the location.
      */
     getUpdateAt(): string

@@ -30,6 +30,7 @@
   "TEXT_CAPTION_OTHER_LINK": "Anderer Link",
   "TEXT_CAPTION_GEONAME_ID": "Geoname ID",
   "TEXT_CAPTION_LAST_UPDATE": "Letztes Update",
+  "TEXT_CAPTION_ZIP_CODE": "Postleitzahl",
 
   "TEXT_HOME_TITLE": "location.place",
   "TEXT_HOME_SUBTITLE": "Lokalisiere deinen Standort",

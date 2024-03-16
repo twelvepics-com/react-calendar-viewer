@@ -84,6 +84,11 @@ const LocationInformation = ({location, number}: LocationInformationProps) =>
                         colSpan={2}>{location.getGeonameId()}</td>
                 </tr>
                 <tr>
+                    <td className={classNamesRow1.join(' ')}>{t('TEXT_CAPTION_ZIP_CODE')}</td>
+                    <td className={classNamesRow2.join(' ')}
+                        colSpan={2}>{location.getZipCode()}</td>
+                </tr>
+                <tr>
                     <td className={classNamesRow1.join(' ')}>{t('TEXT_CAPTION_LAST_UPDATE')}</td>
                     <td className={classNamesRow2.join(' ')}
                         colSpan={2}>{convertToGermanFormat(location.getUpdateAt())}</td>

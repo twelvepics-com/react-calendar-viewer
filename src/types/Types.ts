@@ -383,6 +383,7 @@ type TypeLocation = {
     "properties": TypeProperties,
     "timezone"?: TypeTimezone,
     "updated-at": string,
+    "zip-code": string,
 }
 
 type TypeLocations = TypeLocation[];
