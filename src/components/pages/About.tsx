@@ -10,7 +10,7 @@ import Header from "../layout/Header";
 import Loader from "../layout/Loader";
 
 /* Add font awesome icons: https://fontawesome.com/icons */
-import {faDatabase, faImages, faIndustry} from "@fortawesome/free-solid-svg-icons";
+import {faImages, faIndustry} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 /* Import types. */
@@ -46,13 +46,6 @@ const About = () =>
     const [propertiesCalendarBuilder, setPropertiesCalendarBuilder] = useState<TypeApiProperties|null>(null);
     const apiPathCalendarBuilder = '/api/v1/version.json';
 
-    /* Location API variables */
-    const [loadedLocationApi, setLoadedLocationApi] = useState<TypeLoaded>(false);
-    const [errorLocationApi, setErrorLocationApi] = useState<TypeErrorOwn>(null);
-    const [dataLocationApi, setDataLocationApi] = useState<TypeDataVersion|null>(null);
-    const [propertiesLocationApi, setPropertiesLocationApi] = useState<TypeApiProperties|null>(null);
-    const apiPathLocationApi = '/api/v1/version.json';
-
     /**
      * useEffect function.
      */
@@ -65,15 +58,7 @@ const About = () =>
             setLoaded: setLoadedCalendarBuilder,
             setError: setErrorCalendarBuilder,
         }, t);
-        loadApiData({
-            type: typeLocationApi,
-            path: apiPathLocationApi,
-            setDataVersion: setDataLocationApi,
-            setProperties: setPropertiesLocationApi,
-            setLoaded: setLoadedLocationApi,
-            setError: setErrorLocationApi,
-        }, t);
-    }, [apiPathCalendarBuilder, apiPathLocationApi, typeCalendarBuilder, typeLocationApi, t]);
+    }, [apiPathCalendarBuilder, typeCalendarBuilder, typeLocationApi, t]);
 
     /**
      * The render function.
@@ -83,7 +68,7 @@ const About = () =>
             <Header title={t('TEXT_ABOUT_HEADER_TITLE')} subtitle={t('TEXT_ABOUT_HEADER_SUBTITLE')} />
             <div className="about container mb-5 px-4 px-md-3">
                 <div className="row g-3">
-                    {loadedCalendarBuilder && loadedLocationApi ? <>
+                    {loadedCalendarBuilder ? <>
                         <div className="col-12 col-md-10 offset-md-1 col-xl-8 offset-xl-2">
                             <h2>React Calendar Viewer</h2>
                             <p>
@@ -131,7 +116,7 @@ const About = () =>
                             <p>{t('TEXT_ABOUT_VERSION_DESCRIPTION')}</p>
 
                             <div className="row g-3 mb-5">
-                                <div className="col-12 col-lg-6 d-flex align-items-stretch">
+                                <div className="col-12 col-lg-12 d-flex align-items-stretch">
                                     <div className="card w-100 shadow-own">
                                         <div className="card-header fw-bold"><FontAwesomeIcon icon={faIndustry} style={{'color': 'rgb(114, 126, 174)'}}/>&nbsp; PHP Calendar Builder</div>
                                         <div className="card-body">
@@ -165,53 +150,6 @@ const About = () =>
                                         }
                                     </div>
                                 </div>
-
-
-                                <div className="col-12 col-lg-6 d-flex align-items-stretch">
-                                    <div className="card w-100 shadow-own">
-                                        <div className="card-header fw-bold"><FontAwesomeIcon icon={faDatabase} style={{'color': 'rgb(75, 123, 107)'}} />&nbsp; PHP Location API</div>
-                                        <div className="card-body">
-                                            <ul className="mb-0">
-                                                <li>{t('TEXT_ABOUT_VERSION_LOCATION_USP_1')}</li>
-                                                <li>{t('TEXT_ABOUT_VERSION_LOCATION_USP_2')}</li>
-                                                <li>
-                                                    {t('TEXT_ABOUT_VERSION_LOCATION_USP_3')}: <a
-                                                        href={process.env.REACT_APP_LOCATION_API_URL + '/api/v1/version.json'}
-                                                        target={'_blank'}
-                                                        rel="noreferrer"
-                                                    >
-                                                        version.json
-                                                    </a> (<code>JSON</code>)
-                                                </li>
-                                                <li>
-                                                    {t('TEXT_ABOUT_VERSION_LOCATION_USP_4')}: <a
-                                                        href={process.env.REACT_APP_LOCATION_API_URL + '/api/v1/import.json'}
-                                                        target={'_blank'}
-                                                        rel="noreferrer"
-                                                    >
-                                                        import.json
-                                                    </a> (<code>JSON</code>)
-                                                </li>
-                                                <li>
-                                                    {t('TEXT_ABOUT_VERSION_LOCATION_USP_5')}: <a
-                                                    href={'https://github.com/twelvepics-com/php-location-api/blob/main/CHANGELOG.md'}
-                                                    target={'_blank'}
-                                                    rel="noreferrer"
-                                                >
-                                                    PHP Location API
-                                                </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        {
-                                            dataLocationApi ?
-                                                <div className="card-footer fst-italic">
-                                                    <small><small>Version {dataLocationApi.version} - {dataLocationApi.date}</small></small>
-                                                </div> :
-                                                <></>
-                                        }
-                                    </div>
-                                </div>
                             </div>
 
                             <p>
@@ -219,12 +157,8 @@ const About = () =>
                             </p>
                         </div>
                     </> : (
-                        errorCalendarBuilder === null && errorLocationApi === null ?
-                            <Loader/> : (
-                                errorCalendarBuilder !== null ?
-                                    <Error error={errorCalendarBuilder} apiPath={propertiesCalendarBuilder ? propertiesCalendarBuilder['api-url'] : 'Unknown'} /> :
-                                    <Error error={errorLocationApi} apiPath={propertiesLocationApi ? propertiesLocationApi['api-url']: 'Unknown'} />
-                            )
+                        errorCalendarBuilder === null ?
+                            <Loader/> : <Error error={errorCalendarBuilder} apiPath={propertiesCalendarBuilder ? propertiesCalendarBuilder['api-url'] : 'Unknown'} />
                     )}
                 </div>
             </div>

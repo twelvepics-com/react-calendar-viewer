@@ -90,18 +90,13 @@ const CalendarPage = () =>
                                 <div style={{clear: 'both'}}></div>
                             </div>
                             <p>
-                                <strong>{t('TEXT_WORD_COORDINATE')}</strong> (Google Maps): {data.google_maps !== null ?
+                                <strong>Google Maps</strong>: {data.google_maps !== null ?
                                     <Link to={data.google_maps} target="_blank" rel="noreferrer">{data.coordinate_dms}</Link> :
                                     data.coordinate
                                 }<br/>
 
-                                <strong>{t('TEXT_WORD_COORDINATE')}</strong> (Location API): {data.coordinate_decimal !== null ?
-                                    <Link to={'/location.html?q=' + data.coordinate_decimal.replace(/, /, ', ') + '&next_places=1'}>{data.coordinate_decimal}</Link> :
-                                    data.coordinate_decimal
-                                }<br/>
-
-                                <strong>{t('TEXT_WORD_COORDINATE')}</strong> (Twelvepics API): {data.coordinate_decimal !== null ?
-                                    <Link to={'https://twelvepics.com/location/' + data.coordinate_decimal.replace(/, /, '/')} target="_blank" rel="noreferrer">{data.coordinate_decimal}</Link> :
+                                <strong>{t('TEXT_WORD_INFORMATION')}</strong>: {data.coordinate_decimal !== null ?
+                                    <Link to={'https://locate.place/location.html?q=' + data.coordinate_decimal.replace(/, /, ', ') + '&next_places=1'}>{data.coordinate}</Link> :
                                     data.coordinate_decimal
                                 }<br/>
 

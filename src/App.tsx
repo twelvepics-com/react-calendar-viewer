@@ -17,11 +17,8 @@ import Calendars from "./components/pages/Calendars";
 import Calendar from "./components/pages/Calendar";
 import Contact from "./components/pages/Contact";
 import Home from "./components/pages/Home";
-import Locations from "./components/pages/Locations";
-import Location from "./components/pages/Location";
 import NotFound from "./components/pages/NotFound";
 import CalendarPage from "./components/pages/CalendarPage";
-import Countries from "./components/pages/Countries";
 
 /* Add component parts */
 import Footer from "./components/layout/Footer";
@@ -111,11 +108,6 @@ const App = () =>
                     <Route path="/home.html" element={<Home />} />
                     <Route path="/contact.html" element={<Contact />} />
                     <Route path="/about.html" element={<About />} />
-
-                    <Route path="/locations.html" element={<Locations />} />
-                    <Route path="/location.html" element={<Location />} />
-
-                    <Route path="/countries.html" element={<Countries />} />
 
                     <Route path="*" element={<NotFound />} />
                 </Routes>

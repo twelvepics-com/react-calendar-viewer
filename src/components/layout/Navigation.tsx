@@ -76,18 +76,6 @@ const Navigation = () =>
                             </li>
                             <li className="nav-item"><Link
                                 className="nav-link px-lg-3 py-3 py-lg-4"
-                                to={filterConfig.getLinkTo('/locations.html')}
-                                onClick={closeMenu}
-                            >{t('TEXT_NAVIGATION_LOCATIONS')}</Link>
-                            </li>
-                            <li className="nav-item"><Link
-                                className="nav-link px-lg-3 py-3 py-lg-4"
-                                to={filterConfig.getLinkTo('/countries.html')}
-                                onClick={closeMenu}
-                            >{t('TEXT_NAVIGATION_COUNTRIES')}</Link>
-                            </li>
-                            <li className="nav-item"><Link
-                                className="nav-link px-lg-3 py-3 py-lg-4"
                                 to={filterConfig.getLinkTo('/about.html')}
                                 onClick={closeMenu}
                             >{t('TEXT_NAVIGATION_ABOUT')}</Link>
