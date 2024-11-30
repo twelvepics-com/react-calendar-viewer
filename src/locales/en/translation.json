@@ -182,6 +182,8 @@
   "TEXT_WORD_COORDINATE": "Coordinate",
   "TEXT_WORD_CURRENT_VERSION": "Current version",
   "TEXT_WORD_DATE": "Date",
+  "TEXT_WORD_DAY_NOT_REACHED": "Day not yet reached.",
+  "TEXT_WORD_DAY_NOT_REACHED_DESCRIPTION": "Day may not yet be opened. :)",
   "TEXT_WORD_DETERMINE_CURRENT_LOCATION": "Determine current location",
   "TEXT_WORD_DETERMINED_CURRENT_LOCATION": "Current location has been determined and adopted.",
   "TEXT_WORD_DESCRIPTION": "Shows the calendars of twelvepics.com.",

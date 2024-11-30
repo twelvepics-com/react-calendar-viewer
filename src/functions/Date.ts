@@ -25,7 +25,7 @@ const convertToGermanFormat = (dateTime: string): string =>
 
 /**
  * This function is used to convert the date and time into a German format:
- * - Uses the simple englisch format "YYYY-mm-dd" as input.
+ * - Uses the simple english format "YYYY-mm-dd" as input.
  *
  * @param date
  */
@@ -40,10 +40,27 @@ const convertToGermanFormatFromDate = (date: string|null): string =>
     return parts[2] + '.' + parts[1] + '.' + parts[0];
 }
 
+/**
+ * Returns if the given day is reached.
+ *
+ * @param day
+ * @param month
+ * @param year
+ */
+const isDayReached = (day: number, month: number, year: number): boolean =>
+{
+    //const dateToday = new Date(2025, 11, 2);
+    const dateToday = new Date();
+    const dateGiven = new Date(year, month - 1, day);
+
+    return dateToday >= dateGiven;
+}
+
 /*
  * Export functions.
  */
 export {
     convertToGermanFormat,
-    convertToGermanFormatFromDate
+    convertToGermanFormatFromDate,
+    isDayReached
 }

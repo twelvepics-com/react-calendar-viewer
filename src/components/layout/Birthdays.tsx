@@ -62,7 +62,7 @@ const Birthdays = ({data}: HolidaysProps) =>
                 <Modal.Dialog>
                     <Modal.Header closeButton>
                         <Modal.Title>
-                            {t('TEXT_WORD_BIRTHDAYS_TODAY')}
+                            {t('TEXT_WORD_BIRTHDAYS_TODAY' as any)}
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body className="first">
@@ -73,15 +73,15 @@ const Birthdays = ({data}: HolidaysProps) =>
                         </ul>
                     </Modal.Body>
                     <Modal.Body>
-                        {t('TEXT_WORD_HAPPY_BIRTHDAY')}
+                        {t('TEXT_WORD_HAPPY_BIRTHDAY' as any)}
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button onClick={handleClose}>{t('TEXT_WORD_CLOSE')}</Button>
+                        <Button onClick={handleClose}>{t('TEXT_WORD_CLOSE' as any)}</Button>
                     </Modal.Footer>
                 </Modal.Dialog>
             </Modal>
 
-            <h3 className="mt-5">{t('TEXT_WORD_BIRTHDAYS')}</h3>
+            <h3 className="mt-5">{t('TEXT_WORD_BIRTHDAYS' as any)}</h3>
             <ul className="list-group list-group-numbered">
                 {Object.entries(data).map(([date, birthdays]) => (
                     <li key={'birthday-' + date}

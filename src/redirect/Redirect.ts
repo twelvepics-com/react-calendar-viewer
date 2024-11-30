@@ -12,6 +12,7 @@ const redirect = (navigate: NavigateFunction) => {
     let regexCalendar = /^\/l\/([a-zA-Z0-9]+)$/;
     let regexImage = /^\/d\/([a-zA-Z0-9]+)\/([0-9]+)$/;
     let regexPhoto = /^\/p\/([a-zA-Z0-9]+)\/([a-zA-Z0-9]+)$/;
+    let regexPhotoSet = /^\/p\/([a-zA-Z0-9]+)$/;
     let regexRoot = /^\/$/;
 
     /* Redirect to root page */
@@ -36,6 +37,12 @@ const redirect = (navigate: NavigateFunction) => {
     let matchPhoto = regexPhoto.exec(path);
     if (matchPhoto) {
         navigate('/photo.html?ps=' + matchPhoto[1] + '&i=' + matchPhoto[2]);
+    }
+
+    /* Redirect photo set */
+    let matchPhotoSet = regexPhotoSet.exec(path);
+    if (matchPhotoSet) {
+        navigate('/photo-set.html?ps=' + matchPhotoSet[1]);
     }
 }
 

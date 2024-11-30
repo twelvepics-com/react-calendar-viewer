@@ -5,7 +5,7 @@ import {useTranslation} from "react-i18next";
 /* Import functions */
 import loadApiData from "../../functions/LoadApiData";
 import {
-    convertToGermanFormatFromDate
+    convertToGermanFormatFromDate, isDayReached
 } from "../../functions/Date";
 
 /* Import classes */
@@ -80,6 +80,12 @@ const PhotoSetPage = () =>
         return <></>;
     }
 
+    if (data && !isDayReached(data.day, data.month, data.year)) {
+        data.subtitle = t('TEXT_WORD_DAY_NOT_REACHED_DESCRIPTION' as any);
+        data.photo_title = t('TEXT_WORD_DAY_NOT_REACHED' as any);
+        data.description = t('TEXT_WORD_DAY_NOT_REACHED_DESCRIPTION' as any);
+    }
+
     /**
      * The render function.
      */
@@ -91,68 +97,80 @@ const PhotoSetPage = () =>
                     { loaded && (data !== null) && data.photo_title !== undefined ? <>
                         <div className="col-12 col-md-10 offset-md-1 col-xl-8 offset-xl-2">
                             <h2>{data.photo_title}</h2>
-                            <div>
-                                { 'colors' in data ? data.colors.map((item, index) => (
-                                    <div key={'color-' + index} style={{width: 10, height: 10, backgroundColor: item, float: "left"}}></div>
-                                )) : null }
-                                <div style={{clear: 'both'}}></div>
-                            </div>
-                            <p>
-                                <strong>Google Maps</strong>: {data.google_maps !== null ?
-                                    <Link to={data.google_maps} target="_blank" rel="noreferrer">{data.coordinate_dms}</Link> :
-                                    data.coordinate
-                                }<br/>
+                            {data.description && <div><p>{data.description}</p></div>}
 
-                                <strong>{t('TEXT_WORD_INFORMATION' as any)}</strong>: {data.coordinate_decimal !== null ?
-                                    <Link to={'https://locate.place/location.html?q=' + data.coordinate_decimal.replace(/, /, ', ') + '&next_places=1'}>{data.coordinate}</Link> :
-                                    data.coordinate_decimal
-                                }<br/>
+                            {
+                                isDayReached(data?.day ?? 1, data?.month ?? 1, data?.year ?? 2100) &&
+                                    /* Day reached. */
+                                    <>
+                                        <div>
+                                            {'colors' in data ? data.colors.map((item, index) => (
+                                                <div key={'color-' + index}
+                                                     style={{width: 10, height: 10, backgroundColor: item, float: "left"}}></div>
+                                            )) : null}
+                                            <div style={{clear: 'both'}}></div>
+                                        </div>
+                                        <p>
+                                            <strong>Google Maps</strong>: {data.google_maps !== null ?
+                                            <Link to={data.google_maps} target="_blank"
+                                                  rel="noreferrer">{data.coordinate_dms}</Link> :
+                                            data.coordinate
+                                        }<br/>
 
-                                <strong>{t('TEXT_WORD_DATE' as any)}</strong>: {data.day + '.' + data.month + '.' + data.year}<br/>
+                                            <strong>{t('TEXT_WORD_INFORMATION' as any)}</strong>: {data.coordinate_decimal !== null ?
+                                            <Link
+                                                to={'https://locate.place/location.html?q=' + data.coordinate_decimal.replace(/, /, ', ') + '&next_places=1'}>{data.coordinate}</Link> :
+                                            data.coordinate_decimal
+                                        }<br/>
 
-                                <strong>{t('TEXT_WORD_TAKEN' as any)}</strong>: {convertToGermanFormatFromDate(data.date)}<br/>
-                            </p>
+                                            <strong>{t('TEXT_WORD_DATE' as any)}</strong>: {data.day + '.' + data.month + '.' + data.year}<br/>
 
-                            <div className="mb-5">
-                                <Link
-                                    to={properties.url + data.path + '?width=3072&quality=85'}
-                                    className="no-decoration"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    <ImageWithLoader
-                                        src={properties.url + data.path + '?width=1280'}
-                                        srcSet={[
-                                            {
-                                                srcSet: properties.url + data.path + '?width=640',
-                                                media: "(max-width: 600px)"
-                                            },
-                                            {
-                                                srcSet: properties.url + data.path + '?width=1280',
-                                                media: "(max-width: 1200px)"
-                                            }
-                                        ]}
-                                        alt={data.photo_title + ' (' + data.coordinate + ')'}
-                                        title={data.photo_title + ' (' + data.coordinate + ')'}
-                                        border={true}
-                                        orientation={data.orientation ?? 'landscape'}
-                                    />
-                                </Link>
-                            </div>
+                                            <strong>{t('TEXT_WORD_TAKEN' as any)}</strong>: {convertToGermanFormatFromDate(data.date)}<br/>
+                                        </p>
 
-                            {data.description !== undefined ? <>
-                                <h3>{t('TEXT_WORD_WHAT_DO_YOU_SEE' as any)}</h3>
-                                <p style={{textAlign: 'justify'}}>
-                                    {data.description.replace(/\n$/, '').split("\n").map(function (item, idx) {
-                                        return (
-                                            <span key={'description-' + idx}>
-                                                {item}
-                                                <br/><br/>
-                                            </span>
-                                        )
-                                    })}
-                                </p>
-                            </> : null}
+                                        <div className="mb-5">
+                                            <Link
+                                                to={properties.url + data.path + '?width=3072&quality=85'}
+                                                className="no-decoration"
+                                                target="_blank"
+                                                rel="noreferrer"
+                                            >
+                                                <ImageWithLoader
+                                                    src={properties.url + data.path + '?width=1280'}
+                                                    srcSet={[
+                                                        {
+                                                            srcSet: properties.url + data.path + '?width=640',
+                                                            media: "(max-width: 600px)"
+                                                        },
+                                                        {
+                                                            srcSet: properties.url + data.path + '?width=1280',
+                                                            media: "(max-width: 1200px)"
+                                                        }
+                                                    ]}
+                                                    alt={data.photo_title + ' (' + data.coordinate + ')'}
+                                                    title={data.photo_title + ' (' + data.coordinate + ')'}
+                                                    border={true}
+                                                    orientation={data.orientation ?? 'landscape'}
+                                                />
+                                            </Link>
+                                        </div>
+
+                                        {/*{(data.description !== undefined) && <>*/}
+                                        {/*    <h3>{t('TEXT_WORD_WHAT_DO_YOU_SEE' as any)}</h3>*/}
+                                        {/*    <p style={{textAlign: 'justify'}}>*/}
+                                        {/*        {data.description.replace(/\n$/, '').split("\n").map(function (item, idx) {*/}
+                                        {/*            return (*/}
+                                        {/*                <span key={'description-' + idx}>*/}
+                                        {/*                    {item}*/}
+                                        {/*                    <br/><br/>*/}
+                                        {/*                </span>*/}
+                                        {/*            )*/}
+                                        {/*        })}*/}
+                                        {/*    </p>*/}
+                                        {/*</>}*/}
+                                    </>
+                            }
+
                             <div className="mt-5">
                                 <p><Link
                                     className="btn btn-primary"
