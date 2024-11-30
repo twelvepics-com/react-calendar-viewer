@@ -8,19 +8,20 @@ type ImageWithLoaderProps = {
     srcSet: TypeSrcSet[],
     alt: string,
     title: string,
-    border: boolean
+    border: boolean,
+    orientation?: "portrait"|"landscape"
 }
 
 /**
  * This is the image with loader part.
  */
-const ImageWithLoader = ({src, srcSet, alt, title, border}: ImageWithLoaderProps) => {
+const ImageWithLoader = ({src, srcSet, alt, title, border, orientation = "landscape"}: ImageWithLoaderProps) => {
     const [loading, setLoading] = useState(true);
 
     return (
         <>
             {loading && <div className={border ? 'card' : ''} style={{
-                aspectRatio: '4/3',
+                aspectRatio: orientation === 'landscape' ? '4/3' : '3/4',
                 backgroundColor: '#f9f9f9'
             }}>
                 <div
@@ -37,13 +38,18 @@ const ImageWithLoader = ({src, srcSet, alt, title, border}: ImageWithLoaderProps
                     <source key={index} srcSet={source.srcSet} media={source.media} />
                 ))}
                 <img
-                    className={border ? 'img-thumbnail' : ''}
+                    className={
+                        [
+                            orientation === 'landscape' ? 'img-landscape' : 'img-portrait',
+                            border ? 'img-thumbnail' : ''
+                        ].filter(Boolean).join(' ')
+                    }
                     src={src}
                     alt={alt}
                     title={title}
                     style={{
                         display: loading ? 'none' : 'block',
-                        aspectRatio: '4/3',
+                        aspectRatio: orientation === 'landscape' ? '4/3' : '3/4',
                         backgroundColor: '#f9f9f9',
                         width: '100%'
                     }}

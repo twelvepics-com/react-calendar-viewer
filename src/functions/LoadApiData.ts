@@ -1,6 +1,6 @@
 import axios from "axios";
 import semver from "semver";
-import {TFunction} from "i18next";
+import { TFunction } from "i18next";
 
 /* Import types. */
 import {
@@ -30,6 +30,9 @@ const loadApiData = (
     const setDataCalendar = parameters.setDataCalendar ?? null;
     const setDataCalendarPage = parameters.setDataCalendarPage ?? null;
 
+    const setDataPhotoSetPage = parameters.setDataPhotoSetPage ?? null;
+    const setDataPhotoSet = parameters.setDataPhotoSet ?? null;
+
     const callback = parameters.callback ?? null;
 
     let url: string|null = null;
@@ -56,7 +59,7 @@ const loadApiData = (
     }
 
     if (!url) {
-        alert(t('TEXT_ERROR_API_WRONG_TYPE'));
+        alert(t('TEXT_ERROR_API_WRONG_TYPE' as any));
         return;
     }
 
@@ -87,6 +90,12 @@ const loadApiData = (
                 if (setDataCalendarPage !== null) {
                     setDataCalendarPage(data);
                 }
+                if (setDataPhotoSetPage !== null) {
+                    setDataPhotoSetPage(data);
+                }
+                if (setDataPhotoSet !== null) {
+                    setDataPhotoSet(data);
+                }
 
                 return;
             }
@@ -97,7 +106,7 @@ const loadApiData = (
             /* Check API response */
             if (!valid) {
                 setLoaded(false);
-                setError({message: data.error || t('TEXT_ERROR_API_RESPONSE_INVALID')});
+                setError({message: data.error || t('TEXT_ERROR_API_RESPONSE_INVALID' as any)});
                 return;
             }
 
@@ -110,10 +119,10 @@ const loadApiData = (
                 setLoaded(false);
                 setError({
                     message:
-                        t('TEXT_ERROR_API_REQUIRED') + ' ' +
-                        t('TEXT_WORD_REQUIRED_VERSION') + ': ' +
+                        t('TEXT_ERROR_API_REQUIRED' as any) + ' ' +
+                        t('TEXT_WORD_REQUIRED_VERSION' as any) + ': ' +
                         process.env.REACT_APP_CALENDAR_BUILDER_VERSION + '. ' +
-                        t('TEXT_WORD_CURRENT_VERSION') + ': ' + version
+                        t('TEXT_WORD_CURRENT_VERSION' as any) + ': ' + version
                 });
                 return;
             }
@@ -135,6 +144,12 @@ const loadApiData = (
             }
             if (setDataCalendarPage !== null) {
                 setDataCalendarPage(data.data);
+            }
+            if (setDataPhotoSetPage !== null) {
+                setDataPhotoSetPage(data.data);
+            }
+            if (setDataPhotoSet !== null) {
+                setDataPhotoSet(data.data);
             }
 
             if (setProperties) {

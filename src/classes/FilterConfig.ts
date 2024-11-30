@@ -8,6 +8,8 @@ import {TypeFilterConfig} from "../types/Types";
 import {
     nameParameterCalendar,
     nameParameterCountry,
+    nameParameterPhotoSet,
+    nameParameterPhoto,
     nameParameterCurrentPosition,
     nameParameterDistance,
     nameParameterLanguage,
@@ -99,8 +101,15 @@ class FilterConfig
     {
         this.filterConfig = {};
 
+        /* Calendar */
         const calendar: string|null = searchParams.get(nameParameterCalendar);
         const month: string|null = searchParams.get(nameParameterMonth);
+
+        /* Photo set */
+        const photoSet: string|null = searchParams.get(nameParameterPhotoSet);
+        const photo: string|null = searchParams.get(nameParameterPhoto);
+
+        /* Other */
         const query: string|null = searchParams.get(nameParameterQuery);
         const currentPosition: string|null = searchParams.get(nameParameterCurrentPosition);
         const country: string|null = searchParams.get(nameParameterCountry);
@@ -116,6 +125,12 @@ class FilterConfig
 
         /* Add month parameter. */
         month && this.setMonth(month);
+
+        /* Add photo set parameter. */
+        photoSet && this.setPhotoSet(photoSet);
+
+        /* Add photo parameter. */
+        photo && this.setPhoto(photo);
 
         /* Add parameter "q". */
         query && this.setQuery(query);
@@ -145,10 +160,22 @@ class FilterConfig
         nextPlaces && this.setNextPlaces(true);
     };
 
+    /**
+     * Add filter config, given by parameter.
+     *
+     * @param filterConfig
+     */
     addByFilterConfig(filterConfig: TypeFilterConfig): void
     {
+        /* Calendar */
         const calendar: string|null = filterConfig.c ?? null;
         const month: string|null = filterConfig.m ?? null;
+
+        /* PhotoSet */
+        const photoSet: string|null = filterConfig.ps ?? null;
+        const photo: string|null = filterConfig.i ?? null;
+
+        /* Other */
         const query: string|null = filterConfig.q ?? null;
         const currentPosition: string|null = filterConfig.p ?? null;
         const country: string|null = filterConfig.country ?? null;
@@ -164,6 +191,12 @@ class FilterConfig
 
         /* Add month parameter. */
         month && this.setMonth(month);
+
+        /* Add photo set parameter. */
+        photoSet && this.setPhotoSet(photoSet);
+
+        /* Add photo parameter. */
+        photo && this.setPhoto(photo);
 
         /* Add parameter "q". */
         query && this.setQuery(query);
@@ -354,6 +387,70 @@ class FilterConfig
         const value = init ? this.filterConfigInit : this.filterConfig;
 
         return value[nameParameterMonth] ?? null;
+    }
+
+    /**
+     * Sets the photo set filter config (ps).
+     *
+     * @param photoSet
+     */
+    setPhotoSet(photoSet: string): void
+    {
+        this.filterConfig[nameParameterPhotoSet] = photoSet;
+    }
+
+    /**
+     * Returns if the photo set filter config was set (ps).
+     *
+     * @return {boolean}
+     */
+    hasPhotoSet(init: boolean = false): boolean
+    {
+        const value = init ? this.filterConfigInit : this.filterConfig;
+
+        return !!value[nameParameterPhotoSet];
+    }
+
+    /**
+     * Returns the photo set filter config (ps).
+     */
+    getPhotoSet(init: boolean = false): string|null
+    {
+        const value = init ? this.filterConfigInit : this.filterConfig;
+
+        return value[nameParameterPhotoSet] ?? null;
+    }
+
+    /**
+     * Sets the photo filter config (i).
+     *
+     * @param photo
+     */
+    setPhoto(photo: string): void
+    {
+        this.filterConfig[nameParameterPhoto] = photo;
+    }
+
+    /**
+     * Returns if the photo filter config was set (i).
+     *
+     * @return {boolean}
+     */
+    hasPhoto(init: boolean = false): boolean
+    {
+        const value = init ? this.filterConfigInit : this.filterConfig;
+
+        return !!value[nameParameterPhoto];
+    }
+
+    /**
+     * Returns the photo filter config (i).
+     */
+    getPhoto(init: boolean = false): string|null
+    {
+        const value = init ? this.filterConfigInit : this.filterConfig;
+
+        return value[nameParameterPhoto] ?? null;
     }
 
     /**

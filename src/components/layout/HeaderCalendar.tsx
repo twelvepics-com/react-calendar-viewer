@@ -1,11 +1,11 @@
 import React from "react";
 
 /* Import types */
-import {TypeDataCalendar} from "../../types/Types";
+import {TypeDataCalendar, TypeDataPhotoSet} from "../../types/Types";
 import {useTranslation} from "react-i18next";
 
 type HeaderCalendarProps = {
-    data: TypeDataCalendar|null,
+    data: TypeDataCalendar|TypeDataPhotoSet|null,
 }
 
 /**
@@ -22,13 +22,13 @@ const HeaderCalendar = ({data}: HeaderCalendarProps) =>
 
     /* Generated variables */
     let title = '...';
-    let subtitle = t('TEXT_WORD_LOAD');
+    let subtitle = t('TEXT_WORD_LOAD' as any);
     let imageUrl = '';
 
     if (data!== null) {
         title = data.title;
         subtitle = data.subtitle;
-        imageUrl = 'url(' + calendarBuilderUrl + data.image + '?width=1280&type=source)';
+        imageUrl = data.image ? ('url(' + calendarBuilderUrl + data.image + '?width=1280&type=source)') : '';
     }
 
     return (

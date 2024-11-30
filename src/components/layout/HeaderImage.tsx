@@ -2,10 +2,10 @@ import React from "react";
 import {useTranslation} from "react-i18next";
 
 /* Import types. */
-import {TypeDataCalendarPage} from "../../types/Types";
+import {TypeDataCalendarPage, TypeDataPhotoSetPage} from "../../types/Types";
 
 type HeaderImageProps = {
-    data: TypeDataCalendarPage|null
+    data: TypeDataCalendarPage|TypeDataPhotoSetPage|null
 }
 
 /**
@@ -18,7 +18,7 @@ const HeaderImage = ({data}: HeaderImageProps) =>
 
     /* Generated variables */
     let title = '...';
-    let subtitle = t('TEXT_WORD_LOAD');
+    let subtitle = t('TEXT_WORD_LOAD' as any);
     let color = '#f0f0f0';
 
     if (data !== null) {

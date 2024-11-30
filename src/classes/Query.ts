@@ -7,10 +7,14 @@ import {TypeApiProperties, TypeFilterConfig} from "../types/Types";
 import {
     routePathCalendar,
     routePathCalendarPage,
-    routePathCalendars, routePathCountries,
+    routePathPhotoSet,
+    routePathPhotoSetPage,
+    routePathCalendars,
+    routePathCountries,
     routePathHome,
     routePathLocation,
-    routePathLocations, routePathRoot
+    routePathLocations,
+    routePathRoot, routePathPhotoSets
 } from "../config/Route";
 import {
     searchTypeCoordinate,
@@ -27,10 +31,17 @@ import {ApiResponseProperty} from "./Api/ApiResponseProperty";
 import {FilterConfig} from "./FilterConfig";
 import {formatNumber} from "../functions/I18n";
 
-/* API paths */
+/* API paths "calendar" */
 const apiPathCalendars: string = '/v.json';
-const apiPathCalendarPage: string = '/v/%calendar%/%month%.json';
 const apiPathCalendar: string = '/v/%calendar%.json';
+const apiPathCalendarPage: string = '/v/%calendar%/%month%.json';
+
+/* API paths "photo set" */
+const apiPathPhotoSets: string = '/pv.json';
+const apiPathPhotoSet: string = '/pv/%photo-set%.json';
+const apiPathPhotoSetPage: string = '/pv/%photo-set%/%photo%.json';
+
+/* API paths "location" */
 const apiPathQuerySearch: string = '/api/v1/location.json';
 const apiPathExampleSearch: string = '/api/v1/location/examples.json';
 const apiPathCountrySearch: string = '/api/v1/location/countries.json';
@@ -227,7 +238,15 @@ class Query
             case routePathCalendars:
                 return apiPathCalendars;
 
-            /* Calendar page. */
+            /* Calendar. */
+            case routePathCalendar:
+                if (!this.filterConfig.hasCalendar()) {
+                    throw new Error('Calendar parameter is missing.');
+                }
+
+                return apiPathCalendar.replace(
+                    '%calendar%', this.filterConfig.getCalendar() as string
+                );
             case routePathCalendarPage:
                 if (!this.filterConfig.hasCalendar()) {
                     throw new Error('Calendar parameter is missing.');
@@ -242,14 +261,27 @@ class Query
                     '%month%', this.filterConfig.getMonth() as string
                 );
 
-            /* Calendar. */
-            case routePathCalendar:
-                if (!this.filterConfig.hasCalendar()) {
-                    throw new Error('Calendar parameter is missing.');
+            /* Photo set. */
+            case routePathPhotoSet:
+                if (!this.filterConfig.hasPhotoSet()) {
+                    throw new Error('Photo set parameter is missing.');
                 }
 
-                return apiPathCalendar.replace(
-                    '%calendar%', this.filterConfig.getCalendar() as string
+                return apiPathPhotoSet.replace(
+                    '%photo-set%', this.filterConfig.getPhotoSet() as string
+                );
+            case routePathPhotoSetPage:
+                if (!this.filterConfig.hasPhotoSet()) {
+                    throw new Error('Photo set parameter is missing.');
+                }
+                if (!this.filterConfig.hasPhoto()) {
+                    throw new Error('Photo parameter is missing.');
+                }
+
+                return apiPathPhotoSetPage.replace(
+                    '%photo-set%', this.filterConfig.getPhotoSet() as string
+                ).replace(
+                    '%photo%', this.filterConfig.getPhoto() as string
                 );
 
             /* Location. */
@@ -302,9 +334,14 @@ class Query
             /* Use the calendar builder api. */
             case routePathRoot:
             case routePathHome:
+            /* Calendar. */
             case routePathCalendars:
             case routePathCalendar:
             case routePathCalendarPage:
+            /* Photo set. */
+            case routePathPhotoSets:
+            case routePathPhotoSet:
+            case routePathPhotoSetPage:
                 keyName = 'REACT_APP_TYPE_CALENDAR_BUILDER'
 
                 if (!this.env.hasOwnProperty(keyName)) {

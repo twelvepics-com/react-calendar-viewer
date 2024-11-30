@@ -88,8 +88,10 @@ type TypePlace = {
 }
 
 type TypeFilterConfig = {
-    "c"?: string,           /* Calendar parameter */
-    "m"?: string,           /* Month parameter */
+    "c"?: string,           /* Calendar: Calendar parameter */
+    "m"?: string,           /* Calendar: Month parameter */
+    "ps"?: string,          /* Photo set: Photo set */
+    "i"?: string,           /* Photo set: Photo set image */
     "q"?: string,           /* Query parameter */
     "p"?: string,           /* Current position parameter */
     "distance"?: string,    /* Distance parameter */
@@ -134,6 +136,28 @@ type TypeDataCalendarPage = {
     year: number,
 }
 
+type TypeDataPhotoSetPage = {
+    color: string,
+    colors: string[],
+    coordinate: string,
+    coordinate_decimal: string,
+    coordinate_dms: string,
+    date: string,
+    day: number,
+    description?: string,
+    google_maps: string,
+    identifier: string,
+    month: number,
+    orientation: "portrait"|"landscape",
+    path: string,
+    photo_title: string,
+    source: string,
+    subtitle: string,
+    target: string,
+    title: string,
+    year: number,
+}
+
 type TypeDataCalendar = {
     birthdays?: TypeBirthdays,
     holidays?: TypeHolidays,
@@ -141,6 +165,18 @@ type TypeDataCalendar = {
     image: string,
     name?: string,
     pages?: TypeDataCalendarPage[],
+    public: boolean,
+    subtitle: string,
+    title: string,
+    url?: string
+}
+
+type TypeDataPhotoSet = {
+    identifier: string,
+    photo_set: string,
+    image?: string,
+    name?: string,
+    photos?: TypeDataPhotoSetPage[],
     public: boolean,
     subtitle: string,
     title: string,
@@ -174,11 +210,16 @@ type TypeLoadApiArguments = {
     setError: React.Dispatch<React.SetStateAction<TypeErrorOwn>>,
     setProperties: React.Dispatch<React.SetStateAction<TypeApiProperties|null>>,
 
-    /* Optional types */
+    /* Optional types: Version */
     setDataVersion?: React.Dispatch<React.SetStateAction<TypeDataVersion|null>>,
+    /* Optional types: Calendar */
     setDataCalendarPage?: React.Dispatch<React.SetStateAction<TypeDataCalendarPage|null>>,
     setDataCalendar?: React.Dispatch<React.SetStateAction<TypeDataCalendar|null>>,
     setDataCalendars?: React.Dispatch<React.SetStateAction<TypeDataCalendars|null>>,
+    /* Optional types: Photo set */
+    setDataPhotoSetPage?: React.Dispatch<React.SetStateAction<TypeDataPhotoSetPage|null>>,
+    setDataPhotoSet?: React.Dispatch<React.SetStateAction<TypeDataPhotoSet|null>>,
+    /* Optional types: Other */
     setDataLocation?: React.Dispatch<React.SetStateAction<TypeLocation|null>>,
     setDataLocations?: React.Dispatch<React.SetStateAction<TypeLocations|null>>,
     setDataApi?: React.Dispatch<React.SetStateAction<TypeApiData|null>>,
@@ -488,6 +529,8 @@ export {
     TypeDataCalendarPage,
     TypeDataCalendar,
     TypeDataCalendars,
+    TypeDataPhotoSetPage,
+    TypeDataPhotoSet,
     TypeApiProperties,
     TypeLoadApiArguments,
     TypeSearchTypeTranslation,

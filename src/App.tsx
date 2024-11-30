@@ -13,12 +13,14 @@ import redirect from "./redirect/Redirect";
 
 /* Add components */
 import About from "./components/pages/About";
-import Calendars from "./components/pages/Calendars";
 import Calendar from "./components/pages/Calendar";
+import CalendarPage from "./components/pages/CalendarPage";
+import Calendars from "./components/pages/Calendars";
 import Contact from "./components/pages/Contact";
 import Home from "./components/pages/Home";
 import NotFound from "./components/pages/NotFound";
-import CalendarPage from "./components/pages/CalendarPage";
+import PhotoSet from "./components/pages/PhotoSet";
+import PhotoSetPage from "./components/pages/PhotoSetPage";
 
 /* Add component parts */
 import Footer from "./components/layout/Footer";
@@ -102,8 +104,14 @@ const App = () =>
                     <Route index element={<Calendars />} />
 
                     <Route path="/index.html" element={<Calendars />} />
+
+                    /* Calendar */
                     <Route path="/calendar.html" element={<Calendar />} />
                     <Route path="/page.html" element={<CalendarPage />} />
+
+                    /* Photo set */
+                    <Route path="/photo-set.html" element={<PhotoSet />} />
+                    <Route path="/photo.html" element={<PhotoSetPage />} />
 
                     <Route path="/home.html" element={<Home />} />
                     <Route path="/contact.html" element={<Contact />} />

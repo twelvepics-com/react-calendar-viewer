@@ -1,8 +1,10 @@
 /* Parameter names */
-const nameParameterMonth: 'm' = 'm';
-const nameParameterCalendar: 'c' = 'c';
-const nameParameterQuery: 'q' = 'q';
-const nameParameterCurrentPosition: 'p' = 'p';
+const nameParameterMonth: 'm' = 'm'; // Month
+const nameParameterCalendar: 'c' = 'c'; // Calendar
+const nameParameterPhotoSet: 'ps' = 'ps'; // Photo set
+const nameParameterPhoto: 'i' = 'i'; // Image
+const nameParameterQuery: 'q' = 'q'; // Query
+const nameParameterCurrentPosition: 'p' = 'p'; // Position
 const nameParameterCountry: 'country' = 'country';
 const nameParameterLanguage: 'language' = 'language';
 const nameParameterDistance: 'distance' = 'distance';
@@ -17,6 +19,8 @@ const nameParameterNextPlaces: 'next_places' = 'next_places';
 export {
     nameParameterMonth,
     nameParameterCalendar,
+    nameParameterPhotoSet,
+    nameParameterPhoto,
     nameParameterQuery,
     nameParameterCurrentPosition,
     nameParameterCountry,
