@@ -90,8 +90,8 @@ const App = () =>
         i18n.changeLanguage(language).then();
 
         changeMetaAndTitle(
-            t('TEXT_WORD_DESCRIPTION'),
-            t('TEXT_WORD_TITLE'),
+            t('TEXT_WORD_DESCRIPTION' as any),
+            t('TEXT_WORD_TITLE' as any),
             language
         );
     }, [navigate, language]);
