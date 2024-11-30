@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Changelogs
 
+### [0.2.32] - 2024-11-30
+
+* Adds a lock if a photo may only be opened on a certain day.
+
 ### [0.2.31] - 2024-11-30
 
 * Add first version of photo set functionality (e.g. christmas calendar)
