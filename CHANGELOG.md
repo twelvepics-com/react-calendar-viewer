@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Changelogs
 
+### [0.2.34] - 2024-12-13
+
+* Fix contact address
+
 ### [0.2.33] - 2024-12-13
 
 * Fix data type for translation function t
