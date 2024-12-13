@@ -65,24 +65,24 @@ const About = () =>
      */
     return (
         <>
-            <Header title={t('TEXT_ABOUT_HEADER_TITLE')} subtitle={t('TEXT_ABOUT_HEADER_SUBTITLE')} />
+            <Header title={t('TEXT_ABOUT_HEADER_TITLE' as any)} subtitle={t('TEXT_ABOUT_HEADER_SUBTITLE' as any)} />
             <div className="about container mb-5 px-4 px-md-3">
                 <div className="row g-3">
                     {loadedCalendarBuilder ? <>
                         <div className="col-12 col-md-10 offset-md-1 col-xl-8 offset-xl-2">
                             <h2>React Calendar Viewer</h2>
                             <p>
-                                {t('TEXT_ABOUT_DESCRIPTION')} <LinkV2
+                                {t('TEXT_ABOUT_DESCRIPTION' as any)} <LinkV2
                                     to="https://twelvepics.com"
                                     target={'_blank'}
                                     rel="noreferrer"
                                 >twelvepics.com</LinkV2>
                             </p>
 
-                            <h3>{t('TEXT_ABOUT_TITLE')}</h3>
+                            <h3>{t('TEXT_ABOUT_TITLE' as any)}</h3>
 
-                            <h4>{t('TEXT_ABOUT_APP_TITLE')}</h4>
-                            <p>{t('TEXT_ABOUT_APP_DESCRIPTION')}</p>
+                            <h4>{t('TEXT_ABOUT_APP_TITLE' as any)}</h4>
+                            <p>{t('TEXT_ABOUT_APP_DESCRIPTION' as any)}</p>
 
                             <div className="card w-100 shadow-own">
                                 <div className="card-header fw-bold">
@@ -90,9 +90,9 @@ const About = () =>
                                 </div>
                                 <div className="card-body">
                                     <ul className="mb-0">
-                                        <li>{t('TEXT_ABOUT_APP_USP_1')}</li>
+                                        <li>{t('TEXT_ABOUT_APP_USP_1' as any)}</li>
                                         <li>
-                                            {t('TEXT_ABOUT_APP_USP_2')} <LinkV2
+                                            {t('TEXT_ABOUT_APP_USP_2' as any)} <LinkV2
                                                 to={'https://react.dev/blog/2022/03/29/react-v18'}
                                                 target={'_blank'}
                                                 rel="noreferrer"
@@ -100,7 +100,7 @@ const About = () =>
                                                 React
                                             </LinkV2> 18.2.0
                                         </li>
-                                        <li>{t('TEXT_ABOUT_APP_USP_3')}: <LinkV2
+                                        <li>{t('TEXT_ABOUT_APP_USP_3' as any)}: <LinkV2
                                             to={'https://github.com/twelvepics-com/react-calendar-viewer/blob/main/CHANGELOG.md'}
                                             target={'_blank'}
                                             rel="noreferrer"
@@ -112,8 +112,8 @@ const About = () =>
                                 </div>
                             </div>
 
-                            <h4 className="mt-5">{t('TEXT_ABOUT_VERSION_TITLE')}</h4>
-                            <p>{t('TEXT_ABOUT_VERSION_DESCRIPTION')}</p>
+                            <h4 className="mt-5">{t('TEXT_ABOUT_VERSION_TITLE' as any)}</h4>
+                            <p>{t('TEXT_ABOUT_VERSION_DESCRIPTION' as any)}</p>
 
                             <div className="row g-3 mb-5">
                                 <div className="col-12 col-lg-12 d-flex align-items-stretch">
@@ -121,10 +121,10 @@ const About = () =>
                                         <div className="card-header fw-bold"><FontAwesomeIcon icon={faIndustry} style={{'color': 'rgb(114, 126, 174)'}}/>&nbsp; PHP Calendar Builder</div>
                                         <div className="card-body">
                                             <ul className="mb-0">
-                                                <li>{t('TEXT_ABOUT_VERSION_CALENDAR_USP_1')}</li>
-                                                <li>{t('TEXT_ABOUT_VERSION_CALENDAR_USP_2')}</li>
+                                                <li>{t('TEXT_ABOUT_VERSION_CALENDAR_USP_1' as any)}</li>
+                                                <li>{t('TEXT_ABOUT_VERSION_CALENDAR_USP_2' as any)}</li>
                                                 <li>
-                                                    {t('TEXT_ABOUT_VERSION_CALENDAR_USP_3')}: <a
+                                                    {t('TEXT_ABOUT_VERSION_CALENDAR_USP_3' as any)}: <a
                                                         href={process.env.REACT_APP_CALENDAR_BUILDER_URL + '/api/v1/version.json'}
                                                         target={'_blank'} rel="noreferrer"
                                                     >
@@ -132,7 +132,7 @@ const About = () =>
                                                     </a> (<code>JSON</code>)
                                                 </li>
                                                 <li>
-                                                    {t('TEXT_ABOUT_VERSION_CALENDAR_USP_4')}: <a
+                                                    {t('TEXT_ABOUT_VERSION_CALENDAR_USP_4' as any)}: <a
                                                     href={'https://github.com/twelvepics-com/php-calendar-builder/blob/main/CHANGELOG.md'}
                                                     target={'_blank'} rel="noreferrer"
                                                 >

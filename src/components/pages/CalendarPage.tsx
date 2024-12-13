@@ -95,12 +95,12 @@ const CalendarPage = () =>
                                     data.coordinate
                                 }<br/>
 
-                                <strong>{t('TEXT_WORD_INFORMATION')}</strong>: {data.coordinate_decimal !== null ?
+                                <strong>{t('TEXT_WORD_INFORMATION' as any)}</strong>: {data.coordinate_decimal !== null ?
                                     <Link to={'https://locate.place/location.html?q=' + data.coordinate_decimal.replace(/, /, ', ') + '&next_places=1'}>{data.coordinate}</Link> :
                                     data.coordinate_decimal
                                 }<br/>
 
-                                <strong>{t('TEXT_WORD_CALENDAR_PAGE')}</strong>: {data.year}/{data.month === 0 ? t('TEXT_WORD_TITLE_PAGE') : data.month}<br/>
+                                <strong>{t('TEXT_WORD_CALENDAR_PAGE' as any)}</strong>: {data.year}/{data.month === 0 ? t('TEXT_WORD_TITLE_PAGE' as any) : data.month}<br/>
                             </p>
 
                             <div className="mb-5">
@@ -130,7 +130,7 @@ const CalendarPage = () =>
                             </div>
 
                             {data.description !== undefined ? <>
-                                <h3>{t('TEXT_WORD_WHAT_DO_YOU_SEE')}</h3>
+                                <h3>{t('TEXT_WORD_WHAT_DO_YOU_SEE' as any)}</h3>
                                 <p style={{textAlign: 'justify'}}>
                                     {data.description.replace(/\n$/, '').split("\n").map(function (item, idx) {
                                         return (
@@ -148,7 +148,7 @@ const CalendarPage = () =>
                                 <p><Link
                                     className="btn btn-primary"
                                     to={query.getFilterConfig().getLinkTo('/calendar.html?c=' + data.identifier)}
-                                >{t('TEXT_WORD_BACK_TO_THE_CALENDAR')}</Link></p>
+                                >{t('TEXT_WORD_BACK_TO_THE_CALENDAR' as any)}</Link></p>
                             </div>
                             <div className="mt-5">
                                 <SearchPerformance

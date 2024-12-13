@@ -107,7 +107,7 @@ const Calendar = () =>
                                         <h5 className="card-title mb-0">{item.page_title}</h5>
                                     </div>
                                     <div className="card-footer">
-                                        <p className="card-text one-line">{item.year}/{item.month === 0 ? t('TEXT_WORD_TITLE_PAGE') : item.month}</p>
+                                        <p className="card-text one-line">{item.year}/{item.month === 0 ? t('TEXT_WORD_TITLE_PAGE' as any) : item.month}</p>
                                     </div>
                                 </div>
                             </div>

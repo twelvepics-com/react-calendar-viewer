@@ -70,7 +70,7 @@ const Calendars = () =>
      */
     return (
         <>
-            <Header title={t('TEXT_CALENDARS_TITLE')} subtitle={t('TEXT_CALENDARS_SUBTITLE')} />
+            <Header title={t('TEXT_CALENDARS_TITLE' as any)} subtitle={t('TEXT_CALENDARS_SUBTITLE' as any)} />
             <div className="calendars container mb-5 px-4 px-md-3">
                     {loaded && data !== null ? <>
                         <div className="row g-4">
