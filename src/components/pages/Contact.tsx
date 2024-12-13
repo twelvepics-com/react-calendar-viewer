@@ -65,7 +65,7 @@ const Contact = () =>
                             <div className="card-footer">
                                 <small><small>
                                     <strong>{t('TEXT_ADDRESS' as any)}</strong> -&nbsp;
-                                    <span><LinkV2 to={'/location.html?q=51°3′39.2616″N,%2013°44′26.5956″E&next_places=1'}>51°3′39.2616″N, 13°44′26.5956″E</LinkV2></span><br/>
+                                    <span><LinkV2 to={'https://locate.place/location.html?q=51°3′39.2616″N,%2013°44′26.5956″E&next_places=1'}>51°3′39.2616″N, 13°44′26.5956″E</LinkV2></span><br/>
                                     <span><strong>{t('TEXT_WORD_LAST_UPDATE' as any)}</strong>: {process.env.REACT_APP_VERSION_APP_DATE}</span>
                                 </small></small>
                         </div>
