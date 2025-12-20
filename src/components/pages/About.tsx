@@ -45,6 +45,7 @@ const About = () =>
     const [dataCalendarBuilder, setDataCalendarBuilder] = useState<TypeDataVersion|null>(null);
     const [propertiesCalendarBuilder, setPropertiesCalendarBuilder] = useState<TypeApiProperties|null>(null);
     const apiPathCalendarBuilder = '/api/v1/version.json';
+    const year = new Date().getFullYear();
 
     /**
      * useEffect function.
@@ -153,7 +154,7 @@ const About = () =>
                             </div>
 
                             <p>
-                                Copyright © <a href="https://twelvepics.com">twelvepics.com</a> 2024
+                                Copyright © <a href="https://twelvepics.com">twelvepics.com</a> {year}
                             </p>
                         </div>
                     </> : (
