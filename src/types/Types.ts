@@ -134,6 +134,9 @@ type TypeDataCalendarPage = {
     target: string,
     title: string,
     year: number,
+    date?: string,
+    location?: string,
+    impressions?: string[],
 }
 
 type TypeDataPhotoSetPage = {

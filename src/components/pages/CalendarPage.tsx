@@ -24,6 +24,7 @@ import Holidays from "../layout/Holidays";
 import ImageWithLoader from "../layout/ImageWithLoader";
 import Loader from "../layout/Loader";
 import SearchPerformance from "../layout/SearchPerformance";
+import {convertToGermanFormatFromDate} from "../../functions/Date";
 
 /**
  * This is the "calendar page" component.
@@ -101,6 +102,12 @@ const CalendarPage = () =>
                                 }<br/>
 
                                 <strong>{t('TEXT_WORD_CALENDAR_PAGE' as any)}</strong>: {data.year}/{data.month === 0 ? t('TEXT_WORD_TITLE_PAGE' as any) : data.month}<br/>
+
+                                {
+                                    'date' in data ? <>
+                                        <strong>{t('TEXT_WORD_TAKEN' as any)}</strong>: {convertToGermanFormatFromDate(data.date ?? null)}<br/>
+                                    </> : null
+                                }
                             </p>
 
                             <div className="mb-5">
@@ -129,19 +136,64 @@ const CalendarPage = () =>
                                 </Link>
                             </div>
 
-                            {data.description !== undefined ? <>
-                                <h3>{t('TEXT_WORD_WHAT_DO_YOU_SEE' as any)}</h3>
-                                <p style={{textAlign: 'justify'}}>
-                                    {data.description.replace(/\n$/, '').split("\n").map(function (item, idx) {
-                                        return (
-                                            <span key={'description-' + idx}>
-                                                {item}
-                                                <br/><br/>
-                                            </span>
-                                        )
-                                    })}
-                                </p>
-                            </> : null}
+                            {
+                                data.description !== undefined ? <>
+                                    <h3>{t('TEXT_WORD_WHAT_DO_YOU_SEE' as any)}</h3>
+
+                                    {
+                                        'location' in data && 'date' in data ? <>
+                                            <h5>{data.location ?? ''}, {convertToGermanFormatFromDate(data.date ?? null)}</h5>
+                                        </> : null
+                                    }
+
+                                    <p style={{textAlign: 'justify'}}>
+                                        {data.description.replace(/\n$/, '').split("\n").map(function (item, idx) {
+                                            return (
+                                                <span key={'description-' + idx}>
+                                                    {item}
+                                                    <br/><br/>
+                                                </span>
+                                            )
+                                        })}
+                                    </p>
+                                </> : null
+                            }
+
+                            {
+                                'impressions' in data && (data.impressions ?? []).length > 0 && (
+                                    <div className="row g-2">
+                                        {(data.impressions ?? []).map((_, index) => (
+                                            <div className="col-3" key={index}>
+                                                <Link
+                                                    to={properties.url + data.path + '?width=3072&quality=85&impression=' + index}
+                                                    className="no-decoration"
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                >
+                                                    <ImageWithLoader
+                                                        src={properties.url + data.path + '?width=1280&impression=' + index}
+                                                        srcSet={[
+                                                            {
+                                                                srcSet: properties.url + data.path + '?width=640',
+                                                                media: "(max-width: 600px)"
+                                                            },
+                                                            {
+                                                                srcSet: properties.url + data.path + '?width=1280',
+                                                                media: "(max-width: 1200px)"
+                                                            }
+                                                        ]}
+                                                        alt={data.page_title + ' (' + data.coordinate + ')'}
+                                                        title={data.page_title + ' (' + data.coordinate + ')'}
+                                                        border={true}
+                                                        orientation={'portrait'}
+                                                    />
+                                                </Link>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )
+                            }
+
                             <Birthdays data={data.birthdays} />
                             <Holidays data={data.holidays} />
                             <div className="mt-5">
