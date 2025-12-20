@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Changelogs
 
+### [0.2.35] - 2025-12-21
+
+* Add impression part to calender page view 
+* Add current year to footer and about page
+
 ### [0.2.34] - 2024-12-13
 
 * Fix contact address
